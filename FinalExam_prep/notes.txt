@@ -1,0 +1,222 @@
+Topics to Focus on:
+    - IO Redirection
+    - Dynamic Mem. Allocation
+    - Raster Imgs
+    - 2d arrays
+    - Linked lists SHSL, DHSL
+    - Shallow vs Deep copy
+    - Searching, Sorting
+    - Big O Notation
+    - Recursion
+    - Stack, Queue, List
+    - File I/O
+
+
+Notes: %p is for a memory address: 
+    Ex: printf("Mem address of x is %p", &x);
+
+For every .h header file, we need to do our guard
+    Ex: #ifndef FUNCS_H 
+        #define FUNCS_H
+        .
+        .
+        .
+        .
+        #endif
+
+int main(int argc, char * argv[]) -> ./executable 10  
+    argv[0] = ./executable
+
+    If arguments are an integer, make sure you use atoi() or atof()
+
+IO Redirection:
+./executable < data.txt -- Feeding in data.txt as our input
+./executable < data.txt > expected_results.txt -- Redirects our output 
+
+Check for Memory Leaks: valgrind -q --leak-check=full ./executable
+
+Memory address is 8 bytes
+
+For Raster IMGS, if we want to set an entire img black or to another color in O(1) time complexity,
+we can use memset(pointer to block of memory, integer, number of bytes to be set to this integer) 
+    Ex: memset( img, 0, width * height * sizeof(img[0]) )
+
+Flipping an IMG Horizontally: 
+    index = y * cols + x;
+    mirrored_index = (cols - 1 - x) + y * cols
+
+Flipping an IMG Vertically:
+    index = y * cols + x;
+    mirrored_index = (rows - 1 - y) * cols + x;
+
+
+Syntax for Structs using typedef
+
+typedef struct Node {
+
+    int val;
+    struct Node * next;
+
+} Node_t;
+
+Appending a Node to a SHSL is O(n) because you must traverse it
+Appending a Node to a DHSL is O(1) because we have the tail pointer access
+
+If we have a pointer to struct, we must use arrow notation ->
+
+// Sorting & Searching Algorithms // 
+
+Linear Search O(n)
+    for(int i = 0; i < size; i++){
+        if(data[i] == targetValue){
+            return i;
+        }
+    }
+
+Binary Search Olog(n) using recursion:
+    int binarySearch(int * data, unsigned int low, unsigned int high, int target){
+
+        // Base case
+        if(low > high) return -1; // Not found
+
+        unsigned int mid = floor(low + high / 2);
+
+        if(data[mid] == target){
+            return mid;
+        }
+
+        if(data[mid] > target){
+            return binarySearch(data, low, mid - 1, target);
+        }
+
+        if(data[mid] < target){
+            return binarySearch(data, mid + 1; high, target);
+        }
+    }
+
+
+Binary Search without Recursion:
+    int binarySearch(int * data, int size, int target){
+
+        unsigned int low = 0;
+        unsigned int high = size - 1;
+
+        while(low <= high){
+
+            unsigned int mid = floor(low + high / 2);
+            if(data[mid] == target){
+                return mid;
+            }
+
+            if(data[mid] > target){
+                high = mid - 1;
+            }
+
+            if(data[mid] < target){
+                low = mid + 1;
+            }
+        }
+        return -1; // not found
+    }
+
+
+Selection Sort O(n^2):
+    for(int i = 0; i < size; i++){
+        minIndex = i;
+        for(int j = i + 1; j < size; j++){
+            if(data[j] < data[minIndex]){
+                minIndex = j;
+            }
+        }
+
+        // Swap
+        int temp = data[i];
+        data[i] = data[minIndex];
+        data[minIndex] = temp;
+    }
+
+Bubble sort O(n^2):
+    for(int i = 0; i < elementCount; i++){
+        for(int j = 0; j < elementCount - 1 - i; j++){
+            if(data[j+1] < data[j]){
+                int temp = data[j];
+                data[j] = data[j+1];
+                data[j+1] = temp;
+            }
+        }
+    }
+
+
+Insertion Sort O(n^2)
+    for(int i = 1; i < size; i++){
+        key = data[i];
+        j = i - 1;
+
+        while(j >= 0 && data[j] > key){
+            data[j + 1] = data[j];
+            j--;
+        }
+        data[j + 1] = key; 
+    }
+
+Non stable sorting Algorithms do not preserve order, while stable does
+Stable: Bubble, Insertion
+NonStable: Selection Sort
+
+
+// File IO //
+
+Writing into a file:
+    FILE * theFile = fopen("myfile.txt", "w"); This tells the program to open the file for writing(w) or reading(r)
+    fprintf(theFile, "Hello World!") Actually writes into the file; Note: fprintf() will not work for binary files
+    .
+    .
+    .
+    .
+    fclose(theFile) for every fopen there must be a corresponding fclose, 
+
+Loading from a file:
+    fscanf(theFile, "%d", &array[i]) // Takes in the data from the file and stores it somewhere
+
+Writing into a binary file
+    fwrite(ptr to array, size in bytes of each element being written, how many elements, where its being written to)
+
+// C++ Classes //
+
+Class invariant: Set of conditions or rules that must always hold true within the object
+ADT: Abstract Data Type: mentions what operations are to be performed but not how they will
+    be implemented. Does not specify how data will be organized in memory and what Algorithms will
+    be used for implementing the operations. 
+
+List() - Default constructor
+List(unsigned int ___) - Parameterized constructor
+~List() - Destructor
+
+
+// Stack and Queue // 
+
+Stack: LIFO - Last in First Out || FILO - First in Last Out
+
+Where should our top be?
+    Array: At the most recently pushed element
+    SHSL List: At the most front, because we can just update head to push and pop
+    DHSL List: At the front. If you place top in the back, you can push at O(1), but you cannot Pop in O(1)
+                because if you are deleting the tail node, you must maintain the link of the node before, but it is
+                a singly linked list, meaning you must traverse it O(n) to maintain the linkage. 
+
+Queue: FIFO - FIrst in FIrst out || LILO - Last in Last out
+    Enqueue (Add) -> Insert an element at the rear end of the queue 
+    Dequeue (Remove) -> Remove and return the element from the front of the queue
+    DHSL List: Front must go at the back(tail), Back must go at the front(head)
+    
+
+O(n):
+    for(int i = 0; i < size; i++)
+
+O(n^2):
+    for(int i = 0; i < size; i++){
+        for(int j = 0; i < size; j++)
+    }
+
+Olog(n):
+    for(int i = 0; i < size; i *= 2)

@@ -1,0 +1,61 @@
+Compilation Process of a C program:
+C program --> Assembly ---> Object Files(Linker) --> Executable ---> Computer CPU + memory
+
+
+// Precedence Practice:
+
+int x = 2 + 3 * 4;
+printf("%d\n", x);
+Output: 14
+
+int x = 5;
+int y = 10;
+int result = x > 3 && y < 20 || x == 0;
+Output: 1
+
+  // Convert it to fahrenheit 
+  farTemp = celTemp * 9/5 + 32;
+
+  // Can also be done this way
+  farTemp = 32 + 9.0/5 * celTemp; -- Notice that 9/5 is an int, therefore 9/5 = 1, not the decimal  
+
+int a = 3;
+int b = 4;
+float c = a * b / 2;
+printf("%.1f\n", c);
+Output: 6.0
+
+float result = 9 / 5 * 1.0;
+Output: 1.0
+
+ceil(): rounds a int/float value up
+floor(): rounds a int/float value down
+round(): rounds to nearest integer
+
+scanf() returns -1 if you press Ctrl+D(EOF)
+scanf() returns 0 if user input is not matching format specifier
+
+Post-increment: i++
+Pre-increment: ++i
+
+int i = 5;
+int a = i++;
+printf("a = %d, i = %d\n", a, i);
+Output: a = 5, i = 6 (1. i++ returns the current value of i --> Which is 5 right now, 2.
+so int a = 5, and since it increments, int i = 6 now)
+
+int i = 5;
+int a = ++i;
+printf("a = %d, i = %d\n", a, i);
+Output: (Since this is a pre-increment, it increments +1 to i, so here int i = 6, then it returns i, 
+so now int a = 6;) a = 6, i = 6
+
+Note: Post/pre increment does not affect for loops
+
+Caller: The function that calls another function.
+
+Callee: The function that is called.
+
+Parameters: The placeholders in a function definition.
+
+Arguments: The actual values passed when the function is called.

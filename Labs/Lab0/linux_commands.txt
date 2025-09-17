@@ -1,0 +1,83 @@
+Linux Commands 
+Jerry Meng 
+CMPT125 - Professor Lavergne
+May 14, 2025
+
+cd: 
+To change/navigate between different directories/folders
+cd _____(Directory Name)
+Example: jma304@CS-Ubuntu-8:~/sfuhome/cmpt-125$ cd cmpt-125
+
+ls:
+Displays the information about files in the current folder
+ls -a  ls --all
+Example: jma304@CS-Ubuntu-8:~/sfuhome/cmpt-125$ ls -a
+
+rm: 
+Deletes files
+rm -d
+Example: cjma304@CS-Ubuntu-8:~/sfuhome/cmpt-125$ rm -d (Removes empty directories)
+
+mkdir:
+Creates a directory
+mkdir --version
+
+cp:
+Copies files from one directory or folder to another 
+cp -b
+cp ./cmpt-125/hello.c ./TestDirectory (Copies hello.c file into folder TestDirectory)
+
+mv:
+Rename and replace files
+mv -f
+Example: /sfuhome/cmpt-125$ mv -f lab1Files lab2Files (This will rename all lab1Files to lab2Files)
+
+cat:
+displays file contents on terminal, user can manipulate, concatenate, edit, copy, merge contents
+cat -A
+Let's say we want to view all contents of a file, we can do 
+cat -A ____(filename)
+
+less: 
+display file contents one page at a time
+less linux_commands.txt
+If I wanted to view the contents of this txt file one page at a time:
+~/sfuhome/cmpt-125/Lab0$ less linux_commands.txt
+
+more:
+display file contents one page at a time (different then less command, as you can only go forward)
+more +<number>
+Example: If i wanted to display the current file contents from line 30, I can do this:
+jma304@CS-Ubuntu-3:~/sfuhome/cmpt-125/Lab0$ more +30 linux_commands.txt
+
+pwd:
+Print Working Directory(it prints the path to your current directory)
+pwd -L
+Example: If our full path is unknown or confusing, we can do pwd -L to obtain our full 
+path to our current directory 
+
+echo:
+used to display text that is passed in as an argument
+echo Hello World
+Example: If we wanted to display "CMPT125" to our terminal, we can do
+echo CMPT125
+
+grep: 
+tool used for searching and manipulating text patterns within files
+grep -c Hello World linux_commands.txt
+If we wanted to find the # of lines that contained the text Hello World, we can do:
+jma304@CS-Ubuntu-3:~/sfuhome/cmpt-125/Lab0$ grep -c Hello World linux_commands.txt
+
+man:
+man, short for manual, which allows users to acess detailed info about commands and more
+provides detailed documentation to help users understand better
+man ls
+If I wanted to know more about the ls command, I can do:
+man ls
+
+rmdir
+Removes empty directories
+rmdir -p 
+Example: if we had a bunch of empty directories and it was annoying to delete one by one
+we can do this: rmdir -p Dir1/Dir2/Dir3/DirN
+

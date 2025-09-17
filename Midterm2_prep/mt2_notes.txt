@@ -1,0 +1,52 @@
+// Check for memory leak
+valgrind -q --leak check=full ./executable
+
+For every malloc that is called, it is GPS to immediately follow up with a check that malloc
+allocated memory correctly, after you don't need it anymore, make sure to free() it, and dont leave dangling pointers
+
+For every fopen(), you must have a matching fclose()
+
+Watch out for when functions return pointers to the stack frame, this is a big issue, as the pointers may be pointing to
+the stack frame that is being released!
+
+Note: fgets() returns a pointer, so when you use fgets() it is important to check the pointer returned is not NULL
+
+int main(int argc, char * argv[])
+
+srand(time(NULL)) allows a random number
+
+When working with Raster Images, to access every pixel(index), we can use this formula
+index = y * img_width + x, this is saying, for every row(y), we need to know how many columns are in this row(img_width)
+and which column we are currently positioned at (x)
+
+We can modify every pixel of an IMG by doing:
+    for(unsigned int i = 0; i < img_width * img_height; i++){
+        // do something
+    }
+
+This can be done faster by using memset(pointer to block of memory to fill, 
+what to set the values to, number of bytes to set it to)
+
+Note: sizeof(memory address) --> 8 bytes
+
+Note: uint8_t is the best datatype for pixels, it is an unsigned integer of 8 bytes, its range is 0 to 255, which is perfect
+for our pixels, as pixels can only go from 0 to 255 too
+
+You can limit values by doing: rand() % LIMIT
+
+Note: lets say we have a struct data type intArray_t, if there is a pointer ia to this struct,
+we need to use -> arrow notation or (*ia) de-referencer notation
+
+// Information on finding time complexity O(n)
+    if there are nested, you multiply their time efficiency together 
+    // O(n)        Ex: for(int i = 0; i < n; i++){
+    // O(1)            if(-----)
+            }
+
+Note: The space complexity of in place sorting algorithm is O(1), otherwise it is O(n), 
+
+Searching Algs:
+    Linear Search, Binary Search, 
+
+Sorting Algs:
+    Bubble Sort, Insertion Sort, Selection Sort, 

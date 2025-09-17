@@ -1,0 +1,39 @@
+[signed] char: 
+    size: 8 bits
+    -128 to 127
+
+unsigned char:
+    size: 8 bits
+    0 to 255
+
+[signed] short:
+    size: 16 bits
+    -32,768 to 32,767
+
+signed short:
+    size: 16 bits
+    0 to 65,535
+
+[signed] int: 
+    size: 32 bits
+    -2,147,483,648 to 2,147,483,647
+
+unsigned int:
+    size: 32 bits
+    0 to 4,294,967,295
+
+[signed] long:
+    size: 64 bits
+    -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+
+unsigned long: 
+    size: 64 bits
+    0 to 2^64 - 1
+
+float:
+    size: 32 bits
+    1.2E-38 to 3.4E+38
+
+double:
+    size: 32 bits
+    1.7E - 308 to 1.7E + 308

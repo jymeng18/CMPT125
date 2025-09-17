@@ -1,0 +1,6 @@
+Please, enter a grade from 0 to 100: 96 => A
+Please, enter a grade from 0 to 100: 88 => B
+Please, enter a grade from 0 to 100: 74 => C
+Please, enter a grade from 0 to 100: 67 => D 
+Please, enter a grade from 0 to 100:
+Bye!
